@@ -1,0 +1,346 @@
+/* Base Styles */
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    line-height: 1.3;
+    color: #222;
+    background-color: #ffffff;
+    margin: 0;
+    padding: 0;
+    font-size: 0.85rem;
+    display: flex; /* Aligns Sidebar and Main Content side-by-side */
+}
+
+/* --- SIDEBAR NAVIGATION --- */
+.sidebar {
+    width: 240px;
+    height: 100vh;
+    position: fixed; /* Keeps menu static while right side scrolls */
+    top: 0;
+    left: 0;
+    background-color: #ffffff;
+    padding: 40px 30px;
+    box-sizing: border-box;
+    border-right: 1px solid #ffffff;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Header Image / Logo */
+.logo-link {
+    display: inline-block;
+    margin-bottom: 40px;
+}
+
+.header-logo {
+    max-width: 180px; /* Adjust this number to scale your logo image size */
+    height: auto;
+    display: block;
+}
+
+/* Navigation Items */
+.site-menu {
+    padding-left: 20px; /* Indent menu items slightly for a cleaner look */
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.menu-item {
+    text-decoration: none;
+    color: #000000;
+    font-size: 0.75rem;
+    transition: color 0.2s ease;
+}
+
+.menu-item:hover {
+    color: #4f4f4f;
+}
+
+.nav-divider {
+    border: 0;
+    border-top: 0px solid #fafafa;
+    margin: 30px 0;
+    width: 100%;
+}
+
+/* Accordion Dropdowns */
+.year-dropdown summary {
+    list-style: none; /* Hides standard browser arrow */
+    cursor: pointer;
+    font-size: 0.75rem;
+    color: #000000;
+    user-select: none;
+    outline: none;
+    position: relative;
+    padding-right: 15px;
+}
+
+/* Optional Custom Minimalist Indicator (+/- or arrow) */
+.year-dropdown summary::after {
+    content: '+';
+    position: absolute;
+    right: 0;
+    font-size: 0.75rem;
+    color: #000000;
+    padding-right: 20px;
+}
+
+.year-dropdown[open] summary::after {
+    content: '-';
+}
+
+.year-dropdown summary:hover {
+    color: #686868;
+}
+
+/* Content hidden inside dropdown until clicked */
+.dropdown-content {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding-left: 6px;
+    margin-top: 8px;
+    margin-bottom: 5px;
+}
+
+.dropdown-content a {
+    text-decoration: none;
+    color: #000000;
+    font-size: 0.75rem;
+    transition: color 0.2s ease;
+}
+
+.dropdown-content a:hover {
+    color: #686868;
+}
+
+/* --- MAIN CONTENT AREA --- */
+.main-content {
+    margin-left: 220px; 
+    padding: 40px;      
+    padding-top: 60px; /* This controls the exact vertical starting point for ALL pages */
+    box-sizing: border-box;
+    width: calc(100% - 220px); 
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center;    
+    
+    justify-content: flex-start; /* Forces content to always start perfectly at the top */
+    
+    /* REMOVE or lower min-height if it's stretching short pages weirdly */
+    min-height: auto; 
+}
+
+
+.about-section {
+    max-width: 700px;
+    padding-top: 100px;
+}
+
+hr {
+    border: 0;
+    border-top: 1px solid #eaeaea;
+    margin: 40px 0;
+}
+
+.about-section h2 {
+    font-size: 1.4rem;
+    font-weight: 500;
+    margin-bottom: 20px;
+}
+
+.about-content p {
+    color: #444;
+    margin-bottom: 6px;
+}
+
+/* Footer */
+footer {
+  margin-top: auto;
+  line-height: 0.5;
+  text-align: left;
+  font-size: 0.75rem;
+  color: #999;
+  padding-top: 40px;
+  padding-left: 15px;
+}
+
+#home-page .main-content {
+    height: 100vh;           
+    overflow: hidden;        
+    display: flex;
+    flex-direction: column;
+    align-items: center;    
+    justify-content: center; 
+}
+
+#home-page .featured-container {
+    width: 100%;
+    height: 100%;           
+    display: flex;
+    align-items: center;    
+    justify-content: center; 
+    max-width: 800px;       
+    max-height: calc(100vh - 120px); 
+    margin: 0 auto;         
+}
+
+#home-page .featured-art {
+    max-width: 100%;
+    max-height: 100%;       
+    width: auto;            
+    height: auto;           
+    object-fit: contain;    
+    display: block;
+}
+
+/* --- GALLERY GRID LAYOUT --- */
+.page-title {
+    font-size: 1.4rem;
+    font-weight: 500;
+    margin-bottom: 30px;
+    color: #111;
+}
+
+/* The Grid Container */
+.image-grid {
+    display: grid;
+    /* Creates 3 columns that share the space completely equally */
+    grid-template-columns: repeat(3, 1fr); 
+    /* The gap/spacing between your square pictures */
+    gap: 20px; 
+    width: 100%;
+}
+
+/* The Grid Items */
+.grid-item {
+    position: relative;
+    width: 100%;
+    /* This padding trick forces the container to be a perfect 1:1 aspect ratio square */
+    padding-top: 100%; 
+    overflow: hidden;
+    background-color: #f0f0f0; /* Optional: light gray background while images load */
+}
+
+/* Perfecting the Square Images */
+.grid-item img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* Object-fit makes sure the image fills the square perfectly without distorting */
+    object-fit: cover; 
+    display: block;
+    transition: opacity 0.3s ease;
+}
+
+
+/* --- COMPLETE MOBILE PHONE OPTIMIZATION (Screens under 768px wide) --- */
+@media (max-width: 768px) {
+    
+    /* 1. Reset Body Layout */
+    body {
+        display: block; 
+    }
+
+    /* 2. Style the full mobile header bar */
+    .mobile-header {
+        display: flex !important; /* Force visibility on mobile */
+        align-items: center;
+        justify-content: space-between; 
+        padding: 15px 20px;
+        background-color: #ffffff;
+        border-bottom: 1px solid #f5f5f5;
+        position: sticky; 
+        top: 0;
+        z-index: 1000;
+    }
+
+    .mobile-logo-link {
+        display: block;
+        line-height: 0;
+    }
+
+    .mobile-logo-img {
+        max-height: 22px; 
+        width: auto;
+        display: block;
+    }
+
+    .mobile-menu-button {
+        display: block !important;
+        font-size: 1.1rem; 
+        cursor: pointer;
+        user-select: none;
+        padding: 5px; 
+    }
+
+/* 3. The Sidebar Dropdown Drawer */
+    .sidebar {
+        display: none; /* Hidden by default until checked */
+        position: fixed; 
+        top: 53px;     /* Sets it right below the mobile header bar so it doesn't overlap */
+        left: 0;
+        width: 100%;   /* Full width of the phone screen */
+        height: calc(100vh - 53px); 
+        overflow-y: auto;           
+        padding: 30px 20px; 
+        background-color: #ffffff;
+        border-bottom: 1px solid #f5f5f5; 
+        z-index: 999; 
+    }
+
+    .sidebar .logo-link,
+    .sidebar .nav-divider {
+        display: none !important;
+    }
+
+    /* 4. THE TOGGLE MECHANISM */
+    /* Hide the actual ugly checkbox box completely */
+    input.menu-checkbox-toggle {
+        display: none !important;
+    }
+
+    /* When checked, reveal the sidebar container */
+    .menu-checkbox-toggle:checked ~ .sidebar {
+        display: flex;
+    }
+
+    /* 5. Main Content Layout for Phone */
+    .main-content {
+        margin-left: 0 !important; 
+        width: 100% !important;    
+        padding: 20px;  
+        padding-top: 30px;
+    }
+
+    /* 5. Main Content Layout for Phone (HOMEPAGE ONLY) */
+    #home-page .main-content {
+        margin-left: 0 !important; 
+        width: 100% !important;    
+        padding: 20px;  
+        height: calc(100vh - 60px) !important; 
+        overflow: hidden !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+    }
+
+    /* 6. Mobile 2-Column Grid */
+    .image-grid {
+        grid-template-columns: repeat(2, 1fr) !important; 
+        gap: 10px !important; 
+    }
+}
+
+/* --- DESKTOP PROTECTION RULE --- */
+/* Pures hidden states when viewing on a computer monitor */
+@media (min-width: 769px) {
+    .mobile-header,
+    .mobile-menu-button,
+    .menu-checkbox-toggle {
+        display: none !important;
+    }
+}
